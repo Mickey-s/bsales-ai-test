@@ -32,7 +32,9 @@ body {
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 60px
+  padding-top: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 @layer utilities {
