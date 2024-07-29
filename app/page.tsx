@@ -30,7 +30,7 @@ export default function Home() {
     setIsLoading(true);
     setResult(null);
 
-    const question = `หาชื่อร้าน ที่อยู่ เวลาเปิดปิด และ link google map ของร้านอาหารในข้อความด้านล่างโดย return ค่าเป็น json ที่มี key เป็น name, address, hours และ googleMapLink
+    const question = `Find restaurant name, address, open hours and google map link from the content below and return the result in json format that has name, address, hours and googleMapLink as a key
       `;
 
     try {
@@ -41,8 +41,9 @@ export default function Home() {
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      const json = JSON.parse(text.substring(8, text.length - 4));
-
+      const json = JSON.parse(
+        text.substring(text.indexOf("{"), text.indexOf("}") + 1)
+      );
       setResult(json);
     } catch (e) {
       alert("Request Failed");
@@ -86,7 +87,14 @@ export default function Home() {
               เวลาเปิด-ปิด: {result.hours || "ไม่พบข้อมูล"}
             </div>
             <div className="mt-4">
-              Google map: {result.googleMapLink || "ไม่พบข้อมูล"}
+              Google map:{" "}
+              {result.googleMapLink ? (
+                <a href={result.googleMapLink} style={{ color: "green" }}>
+                  {result.googleMapLink}
+                </a>
+              ) : (
+                "ไม่พบข้อมูล"
+              )}
             </div>
           </div>
         </>
