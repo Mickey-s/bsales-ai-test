@@ -78,7 +78,7 @@ export default function Home() {
         <>
           <hr className="mt-10" />
 
-          <div className="mt-5">
+          <div className="mt-5 mb-10">
             <div>ชื่อร้าน: {result.name || "ไม่พบข้อมูล"}</div>
             <div className="mt-4">
               ที่อยู่: {result.address || "ไม่พบข้อมูล"}
